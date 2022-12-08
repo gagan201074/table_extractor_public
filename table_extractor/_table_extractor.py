@@ -23,9 +23,9 @@ class TableExtractor:
     sql: str = ""
     file_name: str = ""
     url: str = ""
-    tables: type(list[Table]) = field(default_factory=list)
-    _table_cash: type(dict[str:Table]) = field(default_factory=dict)
-    _sql_statements: type(list[str]) = field(default_factory=list)
+    tables: list[Table] = type(field(default_factory=list))
+    _table_cash: dict[str:Table] = type(field(default_factory=dict))
+    _sql_statements: list[str] = type(field(default_factory=list))
     sql_clean = ""
 
     def from_file(self, file_name: str) -> None:
