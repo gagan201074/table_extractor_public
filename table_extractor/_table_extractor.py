@@ -259,7 +259,7 @@ class TableExtractor:
         return sql
 
     @staticmethod
-    def _identify_source_tables(sql: str) -> set[str]:
+    def _identify_source_tables(sql: str) -> str:
         """Search in the provided SQL statement for source tables (in FROM / JOIN clauses). Return a set
         of fully qualified table names (tabschema.tabname) converted to upper case."""
         # remove EXTRACT FROM TABLE.COLUMN / TRIM FROM TABLE.COLUMN snippets, so the they are not falsely
@@ -282,7 +282,7 @@ class TableExtractor:
         return tables
 
     @staticmethod
-    def _identify_target_tables(sql: str) -> set[str]:
+    def _identify_target_tables(sql: str) -> str:
         """Search in the provided SQL statement for target tables (in CREATE TABLE / CREATE HADOOP TABLE clauses).
         Return a set of fully qualified table names (tabschema.tabname) converted to upper case."""
         create_table = re.findall(
@@ -304,7 +304,7 @@ class TableExtractor:
         return tables
 
     @staticmethod
-    def _identify_renamed_tables(sql: str) -> set[tuple[str, str]]:
+    def _identify_renamed_tables(sql: str) -> str:
         """Search in the provided SQL statement for renamed tables (in FROM / JOIN clauses). Return a set
         of tuples, each of them consisting of the fully qualified original table name and new table name.
         The table names are converted to upper case."""
@@ -323,7 +323,7 @@ class TableExtractor:
         return tables
 
     @staticmethod
-    def _identify_populated_tables(sql: str) -> set[str]:
+    def _identify_populated_tables(sql: str) -> str:
         """Search in the provided SQL statement for tables which are being populated  - either with
         INSERT INTO, or with (LOAD HADOOP xxx) INTO TABLE."""
         result_into_table = re.findall(
