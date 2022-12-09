@@ -1,0 +1,5 @@
+﻿black=~22.3.0
+matplotlib=~3.5.1
+networkx=~2.8
+pytest=~7.1.2
+python=~3.9
