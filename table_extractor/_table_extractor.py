@@ -7,7 +7,6 @@ import requests
 import io
 
 
-@dataclass
 class TableExtractor:
     """Extract table list from a SQL statement.
 
