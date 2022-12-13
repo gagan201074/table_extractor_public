@@ -73,7 +73,7 @@ class TableExtractor:
             populated_tables = self._identify_populated_tables(sql)
             # identify source tables
             for st in source_tables:
-                if st in self._table_cash.keys():
+                if st in self._table_cash:
                     self._table_cash[st].used = True
                 else:
                     self._table_cash[st] = Table(
@@ -81,7 +81,8 @@ class TableExtractor:
                     )
             # identify target tables
             for tt in target_tables:
-                if tt not in self._table_cash.keys():
+##                if tt not in self._table_cash.keys():
+                if tt not in self._table_cash:
                     self._table_cash[tt] = Table(
                         schema=tt.split(".")[0], name=tt.split(".")[1]
                     )
@@ -96,14 +97,14 @@ class TableExtractor:
                 original_table = rt[0]
                 renamed_table = rt[1]
                 # update original_table in the cash
-                if original_table not in self._table_cash.keys():
+                if original_table not in self._table_cash:
                     self._table_cash[original_table] = Table(
                         schema=original_table.split(".")[0],
                         name=original_table.split(".")[1],
                     )
                 self._table_cash[original_table].used = True
                 # update renamed table in the cash
-                if renamed_table not in self._table_cash.keys():
+                if renamed_table not in self._table_cash:
                     self._table_cash[renamed_table] = Table(
                         schema=renamed_table.split(".")[0],
                         name=renamed_table.split(".")[1],
@@ -120,7 +121,7 @@ class TableExtractor:
                 #    )
             # identify populated tables
             for pt in populated_tables:
-                if pt in self._table_cash.keys():
+                if pt in self._table_cash:
                     self._table_cash[pt].populated = True
                 else:
                     self._table_cash[pt] = Table(
